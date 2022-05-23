@@ -47,15 +47,19 @@ source example.env
 
 ### Выбор и настройка стратегии
 
-Система построена в соответствии с принципом [Dependency Inversion](https://habr.com/ru/company/productivity_inside/blog/505430/).
-Конкретная стратегия не является частью системы -- бот может торговать по любой стратегии, которую ему укажут. 
+Реализация стратегий должна размещаться в папке `traders/`.
 
-Примеры стратегий хранится в папке `traders/`. Но благодаря единому интерфейсу, это может быть как локальный код, так и отдельный веб-сервер на другом хосте.
-
-Чтобы начать торговлю по стратегии RSI, используя конфигурацию из файла `config/rsi_trader.yaml`:
+Чтобы начать торговлю по стратегии из файла `rsi.py`, используя конфигурацию из файла `config/rsi_trader_moex.yaml`:
 ```bash
-python run_trader.py rsi -c config/rsi_trader.yaml
+python run_trader.py rsi -c config/rsi_trader_moex.yaml
 ```
+
+Чтобы начать торговлю по стратегии EMA, используя другую конфигурацию из файла `config/ema_trader_moex.yaml`:
+```bash
+python run_trader.py ema -c config/ema_trader_moex.yaml
+```
+
+Чтобы написать свою стратегию, скопируйте один из файлов и реализуйте абстрактный метод `make_decisions`. 
 
 ## Отладка стратегий
 

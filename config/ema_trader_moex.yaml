@@ -7,4 +7,5 @@ window_size: 1h
 decision_interval_s: 20
 
 # algorithm-specific params
-param: 1
+long_ema_period_d: 7
+short_ema_period_d: 1
