@@ -30,14 +30,15 @@ pip install -r requirements.txt
 ```bash
 # create the `example.env` file with the environment variables
 cat > example.env << EOL
+export PYTHONPATH=./:${PYTHONPATH}
 # tinkoff API token with the FULL_ACCESS level
-INVEST_TOKEN=
+export INVEST_TOKEN=
 # tinkoff API sandbox token
-SANDBOX_TOKEN=
+export SANDBOX_TOKEN=
 # (optional) if you have multiple accounts -- please, specify ID of the account you want to trade on
-ACCOUNT_ID=
+#export ACCOUNT_ID=
 # (optional) you can track the orders made by the bot with this name
-APP_NAME=
+#export APP_NAME=
 EOL
 # add to the file required values in your favorite editor (I use Sublime Text here)
 subl example.env
@@ -51,12 +52,12 @@ source example.env
 
 Чтобы начать торговлю по стратегии из файла `rsi.py`, используя конфигурацию из файла `config/rsi_trader_moex.yaml`:
 ```bash
-python run_trader.py rsi -c config/rsi_trader_moex.yaml
+python src/run_trader.py rsi -c config/rsi_trader_moex.yaml
 ```
 
 Чтобы начать торговлю по стратегии EMA, используя другую конфигурацию из файла `config/ema_trader_moex.yaml`:
 ```bash
-python run_trader.py ema -c config/ema_trader_moex.yaml
+python src/run_trader.py ema -c config/ema_trader_moex.yaml
 ```
 
 Чтобы написать свою стратегию, скопируйте один из файлов и реализуйте абстрактный метод `make_decisions`. 
@@ -68,4 +69,3 @@ TODO:
 ## Обработка ошибок
 
 TODO:
-
